@@ -65,6 +65,7 @@ next.addEventListener("click", nextSlide);
 function main(){
     pushSlide();
     setSlides();
+    resetProgress();
 }
 
 main();
