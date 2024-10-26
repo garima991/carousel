@@ -18,7 +18,7 @@ function pushSlide (){
         slide.classList.add("slide");
         const image = document.createElement("img");
         image.src = `https://picsum.photos/seed/slide${i+6}/1080/720`;
-        slide.setAttribute("style", "border-radius : 20px");
+        // slide.setAttribute("style", "border-radius : 20px");
         slide.append(image);
         carousel.append(slide);
     }
@@ -54,6 +54,7 @@ function setProgress(){
 }
 
 function resetProgress(){
+    clearInterval(progressTime);
     progressPercentage = 0; 
     progressTime = setInterval(setProgress, intervalDuration / 100);
 }
