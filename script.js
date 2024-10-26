@@ -1,13 +1,11 @@
 const carousel = document.querySelector(".carousel");
-// const pagination = document.querySelector(".slide-paginaton");
 const slideContainer = document.querySelector(".slide-wrapper");
 const prev = document.querySelector("#prev");
 const next = document.querySelector("#next");
 
-// let currentSlideIndex = 0;
+let currSlide = 0;
 let totalSlides = 10;
 let slides = 0;
-let images = 0;
 
 
 function pushSlide (){
@@ -21,7 +19,6 @@ function pushSlide (){
         carousel.append(slide);
     }
     slides = document.querySelectorAll(".slide");
-    images = document.querySelectorAll("img");
     console.log(slides);
 }
 
@@ -34,22 +31,20 @@ function setSlides(){
 
 function prevSlide(){
     currSlide = (currSlide - 1 + totalSlides) % totalSlides;
-    slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${(index - currSlide) * 100}%)`;
-    })
+    setSlides();
 }
 
 function nextSlide(){
     currSlide = (currSlide + 1) % totalSlides;
-    slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${(index - currSlide) * 100}%)`;
-    })
+    setSlides();
 }
 
-
+prev.addEventListener("click", prevSlide());
+next.addEventListener("click", nextSlide());
 
 function main(){
     pushSlide();
+    setSlides();
 }
 
 main();
