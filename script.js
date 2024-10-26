@@ -39,8 +39,8 @@ function nextSlide(){
     setSlides();
 }
 
-prev.addEventListener("click", prevSlide());
-next.addEventListener("click", nextSlide());
+prev.addEventListener("click", prevSlide);
+next.addEventListener("click", nextSlide);
 
 function main(){
     pushSlide();
