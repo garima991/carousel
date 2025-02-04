@@ -7,7 +7,7 @@ const progressBar = document.querySelector("#progress");
 let currSlide = 0;
 let totalSlides = 10;
 let slides = 0;
-let intervalDuration = 4000;
+let intervalDuration = 5000;
 let progressPercentage = 0;
 let progressTime;
 
@@ -45,22 +45,33 @@ function nextSlide(){
 }
 
 function setProgress(){
-    progressPercentage++;
     if (progressPercentage >= 100) {
-        progressPercentage = 0; 
         nextSlide(); 
+        return;
     }
+    progressPercentage++;
     progressBar.style.width = `${progressPercentage}%`;
+    progressTime = setTimeout(setProgress, intervalDuration / 100);
 }
 
 function resetProgress(){
-    clearInterval(progressTime);
+    clearTimeout(progressTime);
     progressPercentage = 0; 
-    progressTime = setInterval(setProgress, intervalDuration / 100);
+    progressBar.style.width = '0%';
+    // setProgress();
+    setTimeout(setProgress, 1000);
 }
 
 prev.addEventListener("click", prevSlide);
 next.addEventListener("click", nextSlide);
+
+carousel.addEventListener('mouseover', () => {
+    clearTimeout(progressTime);
+});
+
+carousel.addEventListener('mouseout', () => {
+    resetProgress(); // Restart progress
+});
 
 function main(){
     pushSlide();

@@ -110,7 +110,7 @@ main{
 }
   
 #progress {
-    width: 0;
+    width: 0%;
     height: 5px;
     background-color: #47884b;
     transition: width 0.4s ease;
